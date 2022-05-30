@@ -1,9 +1,11 @@
-from faker import Faker
-fake = Faker()
 import random
 import json
 
-def main():
+from faker import Faker
+
+fake = Faker()
+
+def main() -> None:
    """
     Генерирует список из 100 случайно сгенерированных книг и записывает в файл в формате JSON.
    :return: главная функция
@@ -21,17 +23,18 @@ def main():
            json.dump(list_books, f, indent=4, ensure_ascii=False)
 
 
-def title():
+def title() -> int:
     """
     заголовок из файла
     :return: случайную строку из файла books.txt
     """
     filename = "books.txt"
-    with open(filename, encoding="utf-8") as f:
+    with open(filename, 'r', encoding="utf-8") as f:
         title_lines = f.readlines()
         return random.choice(title_lines)
 
-def year():
+
+def year() -> int:
     """
     генерация года книги от 1900 до 1980 года
     :return: возвращает случайный год
@@ -39,7 +42,8 @@ def year():
     year_ = random.randint(1900, 1980)
     return year_
 
-def pages():
+
+def pages() -> int:
     """
     генерация страниц книги от 100 до 250 страниц
     :return: возвращает случайное колличество страниц
@@ -47,7 +51,8 @@ def pages():
     pages_ = random.randint(100, 250)
     return pages_
 
-def isbn13():
+
+def isbn13() -> str:
     """
     генерация номера книги isbn13
     :return: возвращает случайный идентификационный номер книги
@@ -64,7 +69,8 @@ def rating() -> float:
     rating_ = round(random.uniform(1, 5), 1)
     return rating_
 
-def price():
+
+def price() -> float:
     """
      #генерация цены книги
     :return: возвращает случайную цену книги
@@ -72,7 +78,8 @@ def price():
     price_ = round(random.uniform(150, 300), 2)
     return price_
 
-def author():
+
+def author() -> list:
     """
     генерация автора(ов) книги от 1 до 3
     :return: возвращает слуйчного автора(ов) книги
@@ -82,6 +89,7 @@ def author():
     for i in range(random.randint(1, 3)):
         author_.append(fake.name())
     return author_
+
 
 if __name__ == "__main__":
     main()
